@@ -38,8 +38,23 @@ header('Content-type: application/json');
             'poster' => 'https://images-na.ssl-images-amazon.com/images/I/81MDAIdh78L._SY355_.jpg'
         ]
     ];
-    echo json_encode($database);
 
-
-
+    // creare una variabile per salvare il parametro get
+    $autore = $_GET['autore'];
+    // creare un array vuoto per i risultati filtrati
+    $res = [];
+    // ciclare sull'array di dati
+    for ($x=0;$x<count($database);$x++) {
+        //salvare l'elemento x esimo singolo
+        $disco = $database[$x];
+        // se il parametro get corrisponde al value della select o non è stato ancora selezionato nulla, allora salvare nell'array tutto il database
+        if ($autore === "" || $autore == null) {
+          $res = $database;
+          // altrimenti se il parametro get corrisponde alla proprietà author dell'elemento x esimo estratto prima,  allora pushare nell'array solo quel risultato
+        } elseif ($disco['author'] === $autore) {
+          $res[] = $disco;
+        }
+    }
+    // visualizzare l'array dei risultati
+    echo json_encode($res);
 ?>

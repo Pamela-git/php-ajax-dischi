@@ -12,6 +12,14 @@
       <header>
         <img src="img/logo.png" alt="">
       </header>
+      <!-- bonus -->
+      <div class="selectAuthor">
+        <select v-model="author" @click="change">
+          <option value="">Mostra tutti</option>
+          <option v-for="autore in dischi" :value="autore.author">{{autore.author}}</option>
+        </select>
+      </div>
+      <!-- fine bonus -->
       <div class="container">
         <div class="item-container" v-for="disco in dischi">
             <img :src="disco.poster" alt="">
